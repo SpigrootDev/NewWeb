@@ -1,5 +1,19 @@
 // Account Management System
+function showLogin() {
+    document.getElementById("loginForm").style.display = "block";
+    document.getElementById("registerForm").style.display = "none";
+    document.querySelectorAll(".auth-tab").forEach(btn => btn.classList.remove("active"));
+    document.querySelector(".auth-tab:nth-child(1)").classList.add("active");
+}
+
+function showRegister() {
+    document.getElementById("loginForm").style.display = "none";
+    document.getElementById("registerForm").style.display = "block";
+    document.querySelectorAll(".auth-tab").forEach(btn => btn.classList.remove("active"));
+    document.querySelector(".auth-tab:nth-child(2)").classList.add("active");
+}
 class AccountManager {
+    
     constructor() {
         this.currentUser = null;
         this.users = this.loadUsers();
