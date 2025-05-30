@@ -1,1 +1,68 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mein Virtuelles Haustier</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="pet-container">
+        <h1>🐾 Mein Virtuelles Haustier</h1>
+        
+        <div class="pet-display">
+            <div class="pet-emoji" id="petEmoji">🐱</div>
+            <div class="pet-name" id="petName">Miau</div>
+            <div class="pet-status" id="petStatus">Ist glücklich und gesund!</div>
+        </div>
 
+        <div class="stats-container">
+            <div class="stat">
+                <div class="stat-label">🍖 Hunger</div>
+                <div class="stat-bar">
+                    <div class="stat-fill hunger-fill" id="hungerBar"></div>
+                    <div class="stat-value" id="hungerValue">100</div>
+                </div>
+            </div>
+            <div class="stat">
+                <div class="stat-label">😊 Glück</div>
+                <div class="stat-bar">
+                    <div class="stat-fill happiness-fill" id="happinessBar"></div>
+                    <div class="stat-value" id="happinessValue">100</div>
+                </div>
+            </div>
+            <div class="stat">
+                <div class="stat-label">⚡ Energie</div>
+                <div class="stat-bar">
+                    <div class="stat-fill energy-fill" id="energyBar"></div>
+                    <div class="stat-value" id="energyValue">100</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="btn btn-feed" onclick="feedPet()">🍖 Füttern</button>
+            <button class="btn btn-play" onclick="playWithPet()">🎾 Spielen</button>
+            <button class="btn btn-sleep" onclick="petSleep()">😴 Schlafen</button>
+            <button class="btn btn-clean" onclick="cleanPet()">🧼 Waschen</button>
+        </div>
+
+        <div class="age-display">
+            <strong>Alter:</strong> <span id="ageDisplay">0 Tage</span>
+        </div>
+
+        <div class="message" id="messageBox">
+            Willkommen! Kümmere dich gut um dein Haustier! 🐾
+        </div>
+
+        <div class="game-over" id="gameOver" style="display: none;">
+            <div style="font-size: 60px;">💀</div>
+            <h2>Dein Haustier ist gestorben!</h2>
+            <p>Du hast dich nicht gut genug gekümmert...</p>
+            <button class="btn restart-btn" onclick="restartGame()">Neues Haustier</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
