@@ -384,15 +384,16 @@ function startGame() {
     pet = new VirtualPet(petData);
 }
 
-document.getElementById('feedBtn').addEventListener('click', () => pet.feed());
-document.getElementById('playBtn').addEventListener('click', () => pet.play());
-document.getElementById('sleepBtn').addEventListener('click', () => pet.sleep());
-document.getElementById('cleanBtn').addEventListener('click', () => pet.clean());
-document.getElementById('reviveBtn').addEventListener('click', () => pet.revive());
 document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById('feedBtn').addEventListener('click', () => pet.feed());
+    document.getElementById('playBtn').addEventListener('click', () => pet.play());
+    document.getElementById('sleepBtn').addEventListener('click', () => pet.sleep());
+    document.getElementById('cleanBtn').addEventListener('click', () => pet.clean());
+    document.getElementById('reviveBtn').addEventListener('click', () => pet.revive());
+
     const registerForm = document.getElementById("registerForm");
     const loginForm = document.getElementById("loginForm");
-
+    
     // Registrierung
     registerForm.addEventListener("submit", function (e) {
         e.preventDefault();
