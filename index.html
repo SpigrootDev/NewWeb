@@ -3,17 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mein Virtuelles Haustier</title>
+    <title>Mein Virtuelles Haustier - Account System</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="pet-container">
+    <!-- Login/Register Screen -->
+    <div class="auth-container" id="authContainer">
+        <div class="auth-box">
+            <h1>🐾 Virtuelles Haustier</h1>
+            <div class="auth-tabs">
+                <button class="auth-tab active" onclick="showLogin()">Anmelden</button>
+                <button class="auth-tab" onclick="showRegister()">Registrieren</button>
+            </div>
+            
+            <!-- Login Form -->
+            <form class="auth-form" id="loginForm">
+                <h2>Willkommen zurück!</h2>
+                <input type="text" id="loginUsername" placeholder="Benutzername" required>
+                <input type="password" id="loginPassword" placeholder="Passwort" required>
+                <button type="submit" class="btn auth-btn">Anmelden</button>
+            </form>
+            
+            <!-- Register Form -->
+            <form class="auth-form" id="registerForm" style="display: none;">
+                <h2>Account erstellen</h2>
+                <input type="text" id="registerUsername" placeholder="Benutzername" required>
+                <input type="password" id="registerPassword" placeholder="Passwort" required>
+                <input type="text" id="petName" placeholder="Name deines Haustiers" required>
+                <select id="petType" required>
+                    <option value="">Haustier wählen</option>
+                    <option value="cat">🐱 Katze</option>
+                    <option value="dog">🐶 Hund</option>
+                    <option value="rabbit">🐰 Hase</option>
+                    <option value="hamster">🐹 Hamster</option>
+                    <option value="bird">🐦 Vogel</option>
+                </select>
+                <button type="submit" class="btn auth-btn">Account erstellen</button>
+            </form>
+            
+            <div class="auth-message" id="authMessage"></div>
+        </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div class="pet-container" id="gameContainer" style="display: none;">
+        <div class="user-info">
+            <span class="username" id="currentUser"></span>
+            <button class="btn btn-logout" onclick="logout()">Abmelden</button>
+        </div>
+        
         <h1>🐾 Mein Virtuelles Haustier</h1>
         
         <div class="pet-display">
             <div class="pet-emoji" id="petEmoji">🐱</div>
             <div class="pet-name" id="petName">Miau</div>
             <div class="pet-status" id="petStatus">Ist glücklich und gesund!</div>
+            <div class="time-info">
+                <small>Letzter Besuch: <span id="lastVisit">Gerade eben</span></small>
+            </div>
         </div>
 
         <div class="stats-container">
@@ -47,18 +94,26 @@
             <button class="btn btn-clean" onclick="cleanPet()">🧼 Waschen</button>
         </div>
 
-        <div class="age-display">
-            <strong>Alter:</strong> <span id="ageDisplay">0 Tage</span>
+        <div class="pet-info">
+            <div class="info-item">
+                <strong>Alter:</strong> <span id="ageDisplay">0 Tage, 0 Stunden</span>
+            </div>
+            <div class="info-item">
+                <strong>Status:</strong> <span id="healthStatus">Gesund</span>
+            </div>
+            <div class="info-item">
+                <strong>Nächste Aktion nötig in:</strong> <span id="nextAction">Bald</span>
+            </div>
         </div>
 
         <div class="message" id="messageBox">
-            Willkommen! Kümmere dich gut um dein Haustier! 🐾
+            Willkommen zurück! Dein Haustier hat auf dich gewartet! 🐾
         </div>
 
         <div class="game-over" id="gameOver" style="display: none;">
             <div style="font-size: 60px;">💀</div>
             <h2>Dein Haustier ist gestorben!</h2>
-            <p>Du hast dich nicht gut genug gekümmert...</p>
+            <p>Du warst zu lange weg oder hast dich nicht gut genug gekümmert...</p>
             <button class="btn restart-btn" onclick="restartGame()">Neues Haustier</button>
         </div>
     </div>
