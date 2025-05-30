@@ -375,3 +375,76 @@ document.getElementById('playBtn').addEventListener('click', () => pet.play());
 document.getElementById('sleepBtn').addEventListener('click', () => pet.sleep());
 document.getElementById('cleanBtn').addEventListener('click', () => pet.clean());
 document.getElementById('reviveBtn').addEventListener('click', () => pet.revive());
+document.addEventListener("DOMContentLoaded", () => {
+    const registerForm = document.getElementById("registerForm");
+    const loginForm = document.getElementById("loginForm");
+
+    // Registrierung
+    registerForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const username = document.getElementById("registerUsername").value.trim();
+        const password = document.getElementById("registerPassword").value;
+        const petName = document.getElementById("petName").value.trim();
+        const petType = document.getElementById("petType").value;
+
+        if (!username || !password || !petName || !petType) {
+            showAuthMessage("Bitte fülle alle Felder aus.");
+            return;
+        }
+
+        const userData = {
+            password: password,
+            pet: {
+                name: petName,
+                type: petType,
+                hunger: 100,
+                happiness: 100,
+                energy: 100,
+                lastVisit: Date.now()
+            }
+        };
+
+        // Benutzer speichern
+        localStorage.setItem(`user_${username}`, JSON.stringify(userData));
+        localStorage.setItem("currentUser", username);
+
+        // Spiel starten
+        loadGame();
+    });
+
+    // Login
+    loginForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const username = document.getElementById("loginUsername").value.trim();
+        const password = document.getElementById("loginPassword").value;
+
+        const savedUser = localStorage.getItem(`user_${username}`);
+        if (!savedUser) {
+            showAuthMessage("Benutzer nicht gefunden.");
+            return;
+        }
+
+        const userData = JSON.parse(savedUser);
+        if (userData.password !== password) {
+            showAuthMessage("Falsches Passwort.");
+            return;
+        }
+
+        localStorage.setItem("currentUser", username);
+        loadGame();
+    });
+
+    function showAuthMessage(msg) {
+        document.getElementById("authMessage").innerText = msg;
+    }
+
+    function loadGame() {
+        document.getElementById("authContainer").style.display = "none";
+        document.getElementById("gameContainer").style.display = "block";
+        const username = localStorage.getItem("currentUser");
+        document.getElementById("currentUser").innerText = `👤 ${username}`;
+        // weitere Initialisierung (z. B. Anzeige von Haustierdaten) hier
+    }
+});
